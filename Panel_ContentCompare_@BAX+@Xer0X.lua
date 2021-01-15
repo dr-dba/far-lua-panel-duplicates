@@ -46,7 +46,7 @@ local function CmpFunc()
 		local GetFun = _Panel.Selected and panel.GetSelectedPanelItem or panel.GetPanelItem
 		for i = i1, i2 
 		do
-			if	true	
+			if	false	
 			and	mf.waitkey(1, 0) == 'Esc' 
 			and	1 == far.Message('Вы действительно хотите прервать процесс сравнения файлов?', 'Сравнение панелей по содержимому', ';YesNo', 'w') 
 			then	break
