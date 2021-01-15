@@ -1,4 +1,6 @@
-﻿
+--[[
+if true then return end --]]
+
 --[[
 Вариант группирования файлов по длине и CRC, обхода файлов одной панели и поиска на другой
 "парных" (совпадающих по длине и CRC).
@@ -42,7 +44,13 @@ local function CmpFunc()
 		local i1 = 1
 		local i2 = _Panel.Selected and _Panel.SelCount or _Panel.ItemCount
 		local GetFun = _Panel.Selected and panel.GetSelectedPanelItem or panel.GetPanelItem
-		for i = i1, i2 do
+		for i = i1, i2 
+		do
+			if	true	
+			and	mf.waitkey(1, 0) == 'Esc' 
+			and	1 == far.Message('Вы действительно хотите прервать процесс сравнения файлов?', 'Сравнение панелей по содержимому', ';YesNo', 'w') 
+			then	break
+			end
 			local	Item = GetFun(nil, whatpanel, i)
 			if not	Item.FileAttributes:match("d")
 			and	type(tbl_sizes[Item.FileSize]) == "table"
@@ -87,7 +95,7 @@ local function CmpFunc()
 		return Result, res_status
 	end -- CreateList
 
---	local tStart = Far.UpTime
+	local tStart = Far.UpTime
 
 	local AList_Sizes, act_size_status
 	local PList_Sizes, pas_size_status
@@ -118,7 +126,7 @@ local function CmpFunc()
 		Panel.Select(1, 1, 2, table.concat(PSelList, '\n'))
 		-- CmpDial()
 	end
-----[[*D*]]le({ Time = Far.UpTime - tStart, AList = AList, PList = PList, ASelList = ASelList, PSelList = PSelList})
+--	le({ Time = Far.UpTime - tStart, AList = AList, PList = PList, ASelList = ASelList, PSelList = PSelList }) --]]
 end -- CmpFunc
 
 MenuItem {
